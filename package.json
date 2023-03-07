@@ -1,0 +1,43 @@
+{
+    "name": "@trickfilm400/auth-utils",
+    "version": "0.0.0-dev-01",
+    "description": "",
+    "main": "./dist/index.js",
+    "scripts": {
+        "start": "node .",
+        "build": "tsc",
+        "dev": "ts-node-dev --respawn --no-deps --rs --cls ./src/index.ts",
+        "eslint": "eslint src/**/*.ts"
+    },
+    "keywords": [
+        "",
+        "created-with-typescript-new-project-scaffolding",
+        "template",
+        "typescript",
+        "node",
+        "nodejs"
+    ],
+    "author": {
+        "email": "info@example.com",
+        "name": "Change me"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "typescript": "4.9.5",
+        "@types/node": "18.14.6",
+        "eslint": "8.35.0",
+        "@typescript-eslint/eslint-plugin": "5.54.0",
+        "@typescript-eslint/parser": "5.54.0",
+        "eslint-plugin-prettier": "4.2.1",
+        "ts-node": "10.9.1",
+        "ts-node-dev": "2.0.0"
+    },
+    "dependencies": {
+        "typeorm": "0.3.12"
+    },
+    "files": [
+        "dist",
+        "typings"
+    ],
+    "typing": "types/index.d.ts"
+}
