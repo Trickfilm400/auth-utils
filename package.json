@@ -1,6 +1,6 @@
 {
     "name": "@trickfilm400/auth-utils",
-    "version": "0.0.0-dev-01",
+    "version": "0.0.1-dev",
     "description": "",
     "main": "./dist/index.js",
     "scripts": {
@@ -48,5 +48,8 @@
         "dist",
         "typings"
     ],
-    "typings": "types/index.d.ts"
+    "typings": "types/index.d.ts",
+    "publishConfig": {
+        "registry":"https://npm.pkg.github.com"
+    }
 }

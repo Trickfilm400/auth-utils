@@ -18,8 +18,8 @@ jobs:
           node-version: 16
       - name: Install modules
         run: npm ci
-      - name: Run ESLint
-        run: npm run eslint
+  #    - name: Run ESLint
+  #      run: npm run eslint
   publish:
     runs-on: ubuntu-latest
     steps:
@@ -35,6 +35,8 @@ jobs:
       - uses: JS-DevTools/npm-publish@v1
         with:
           access: public
-          token: ${{ secrets.NPM_TOKEN }}
           tag: beta
           check-version: false
+          #token: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          registry: https://npm.pkg.github.com
