@@ -48,7 +48,7 @@
         "dist",
         "typings"
     ],
-    "typings": "types/index.d.ts",
+    "typings": "typings/index.d.ts",
     "publishConfig": {
         "registry":"https://npm.pkg.github.com"
     }
