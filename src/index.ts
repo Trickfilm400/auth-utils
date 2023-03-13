@@ -47,3 +47,5 @@ export class AuthUtils {
     this.passport.registerExpressRoutes();
   }
 }
+
+export { checkLoggedIn } from "./checkLoggedIn";
