@@ -24,6 +24,7 @@
     "license": "MIT",
     "devDependencies": {
         "@kopf02/express-utils": "^1.2.11-main-19a0c74e028fa348bf15b0c3928742c7de690ab7.0",
+        "@types/convict": "^6.1.1",
         "@types/cookie-parser": "^1.4.3",
         "@types/express": "^4.17.17",
         "@types/express-session": "^1.17.6",
@@ -50,6 +51,6 @@
     ],
     "typings": "typings/index.d.ts",
     "publishConfig": {
-        "registry":"https://npm.pkg.github.com"
+        "registry": "https://npm.pkg.github.com"
     }
 }
