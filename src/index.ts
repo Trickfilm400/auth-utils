@@ -12,8 +12,10 @@ export class AuthUtils {
   private static authUtils: AuthUtils;
   private readonly passport: Passport;
   private readonly session: Session;
+  private readonly obj: IAuthUtilsOptions;
   private constructor(obj: IAuthUtilsOptions) {
     obj.strategy ||= "oidc";
+    this.obj = obj;
     this.session = new Session(obj);
     this.passport = new Passport(obj);
   }
@@ -42,8 +44,10 @@ export class AuthUtils {
   async initAll() {
     this.session.registerSessionMiddleware();
     await this.passport.registerPassportStrategy();
-    this.passport.getPassportMiddleware();
-    this.passport.getPassportSessionMiddleware();
+    this.obj.expressApp.getServer().use(this.passport.getPassportMiddleware());
+    this.obj.expressApp
+      .getServer()
+      .use(this.passport.getPassportSessionMiddleware());
     this.passport.registerExpressRoutes();
   }
 }
