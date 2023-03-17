@@ -54,3 +54,5 @@ export class AuthUtils {
 //re-export for inde file usage
 export * from "./checkLoggedIn";
 export * from "./utils/authUtilsConvictConfig";
+export * from "./db/PermissionsEntity";
+export * from "./db/PermissionsHandler";
