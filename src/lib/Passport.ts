@@ -118,9 +118,9 @@ export class Passport {
     this.options.expressApp
       .getServer()
       .get("/logout", (req: Request, res: Response, next: NextFunction) => {
-        req.session.destroy((err) => {
+        req.logout((err) => {
           if (err) return next(err);
-          req.logout((err) => {
+          req.session.destroy((err) => {
             if (err) return next(err);
             res.redirect("/");
           });
