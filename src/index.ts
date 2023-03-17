@@ -51,5 +51,6 @@ export class AuthUtils {
     this.passport.registerExpressRoutes();
   }
 }
-
+//re-export for inde file usage
 export * from "./checkLoggedIn";
+export * from "./utils/authUtilsConvictConfig";

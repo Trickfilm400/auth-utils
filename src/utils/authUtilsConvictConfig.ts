@@ -1,6 +1,6 @@
 import { Schema } from "convict";
 
-export interface ConvictConfig {
+export interface authUtilsConvictConfig {
   sso: {
     issuer_url: string;
     client_id: string;
@@ -11,7 +11,7 @@ export interface ConvictConfig {
   };
 }
 
-export const convictConfigSchema: Schema<ConvictConfig> = {
+export const authUtilsConvictConfigSchema: Schema<authUtilsConvictConfig> = {
   sso: {
     issuer_url: {
       doc: "The issuer url of the SSO",
