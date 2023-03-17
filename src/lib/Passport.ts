@@ -1,7 +1,7 @@
 import { BaseClient, Issuer, Strategy } from "openid-client";
 import * as passport from "passport";
 import { IAuthUtilsOptions } from "../interfaces/IAuthUtilsOptions";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 /**
  * @author Nico W.
@@ -115,11 +115,17 @@ export class Passport {
       }
     );
     //logout
-    this.options.expressApp.getServer().get("/logout", (req: any, res: any) => {
-      req.logout();
-      req.session.destroy();
-      res.redirect("/");
-    });
+    this.options.expressApp
+      .getServer()
+      .get("/logout", (req: Request, res: Response, next: NextFunction) => {
+        req.session.destroy((err) => {
+          if (err) return next(err);
+          req.logout((err) => {
+            if (err) return next(err);
+            res.redirect("/");
+          });
+        });
+      });
     //endregion
   }
 }
