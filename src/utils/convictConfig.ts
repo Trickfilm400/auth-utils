@@ -7,8 +7,8 @@ export interface ConvictConfig {
     client_secret: string;
     callback_urls: string[];
     post_logout_redirect_urls: string[];
+    strategy: "oidc" | "saml";
   };
-  strategy: "oidc" | "saml";
 }
 
 export const convictConfigSchema: Schema<ConvictConfig> = {
@@ -43,11 +43,11 @@ export const convictConfigSchema: Schema<ConvictConfig> = {
       default: [],
       env: "SSO_POST_LOGOUT_REDIRECT_URLS",
     },
-  },
-  strategy: {
-    doc: "The strategy to use for authentication",
-    format: ["oidc", "saml"],
-    default: "oidc",
-    env: "SSO_STRATEGY",
+    strategy: {
+      doc: "The strategy to use for authentication",
+      format: ["oidc", "saml"],
+      default: "oidc",
+      env: "SSO_STRATEGY",
+    },
   },
 };
