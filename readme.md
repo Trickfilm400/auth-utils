@@ -42,3 +42,18 @@ Concept
     - [ ] create custom permissions in db
       - [ ] ensurePermission(name)
       - [ ] will be checked on startup if exist in DB
+- [ ] create routes for user management and permission management
+  - [ ] create routes for user management
+    - [ ] create user
+    - [ ] delete user
+    - [ ] update user
+    - [ ] get user
+    - [ ] get all users
+  - [ ] create routes for permission management
+    - [ ] create permission
+    - [ ] delete permission
+    - [ ] update permission
+    - [ ] get permission
+    - [ ] get all permissions
+  - [ ] OPENAPI SCHEMA!!!!!!!!!]
+  - [ ] ADD ROUTES WITH ABSTRACT CLASSES ETC.
