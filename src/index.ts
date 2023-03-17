@@ -52,4 +52,4 @@ export class AuthUtils {
   }
 }
 
-export { checkLoggedIn } from "./checkLoggedIn";
+export * from "./checkLoggedIn";
