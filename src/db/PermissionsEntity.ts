@@ -10,10 +10,10 @@ export class PermissionsEntity {
   @Column({ type: "varchar", length: 255 })
   // e. g. "132456787543223"
   unique_userId: string;
-  @Column({ type: "int" })
+  //@Column({ type: "int" })
   // timestamp in seconds, after which user has no permission, theoretically not needed, but for security reasons
-  expires: number;
-  @Column({ type: "shorttext" })
+  //expires: number;
+  @Column({ type: "mediumtext" })
   //json string with permissions (for package like asterisk-perm or similar
   permissions: string;
 }
