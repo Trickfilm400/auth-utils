@@ -6,9 +6,11 @@ import HTTPUnauthorizedError from "../utils/HTTPUnauthorizedError";
 
 export class PermissionsHandler {
   private readonly _db: DataSource;
-  constructor() {
-    Mysql.createAppDataSource({});
-    this._db = Mysql.getAppDataSource();
+  constructor(db?: DataSource) {
+    if (!db) {
+      Mysql.createAppDataSource({});
+      this._db = Mysql.getAppDataSource();
+    } else this._db = db;
   }
 
   private dbTable() {
