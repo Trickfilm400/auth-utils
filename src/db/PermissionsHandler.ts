@@ -1,16 +1,30 @@
 import { Mysql } from "@kopf02/express-utils";
-import { DataSource } from "typeorm";
+import { DataSource, DataSourceOptions } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { PermissionsEntity } from "./PermissionsEntity";
 import HTTPUnauthorizedError from "../utils/HTTPUnauthorizedError";
 
 export class PermissionsHandler {
   private readonly _db: DataSource;
-  constructor(db?: DataSource) {
-    if (!db) {
-      Mysql.createAppDataSource({});
+  private static permissionsHandler: PermissionsHandler;
+  private constructor(db: DataSource | Partial<DataSourceOptions>) {
+    if (db instanceof DataSource) {
+      //use existing connection
+      this._db = db;
+    } else {
+      //create new mysql connection
+      Mysql.createAppDataSource(db);
       this._db = Mysql.getAppDataSource();
-    } else this._db = db;
+    }
+  }
+
+  static getPermissionsHandler() {
+    return this.permissionsHandler;
+  }
+
+  static createPermissionsHandler(db: DataSource | Partial<DataSourceOptions>) {
+    this.permissionsHandler = new PermissionsHandler(db);
+    return this.permissionsHandler;
   }
 
   private dbTable() {
