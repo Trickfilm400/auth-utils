@@ -8,6 +8,7 @@ export interface authUtilsConvictConfig {
     callback_urls: string[];
     post_logout_redirect_urls: string[];
     strategy: "oidc" | "saml";
+    zitadelRoleMapping: string;
   };
 }
 
@@ -48,6 +49,12 @@ export const authUtilsConvictConfigSchema: Schema<authUtilsConvictConfig> = {
       format: ["oidc", "saml"],
       default: "oidc",
       env: "SSO_STRATEGY",
+    },
+    zitadelRoleMapping: {
+      doc: "Map the roles to permissions",
+      format: String,
+      default: "",
+      env: "SSO_ZITADEL_ROLE_MAPPING",
     },
   },
 };

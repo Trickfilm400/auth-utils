@@ -1,6 +1,7 @@
 import { IAuthUtilsOptions } from "./interfaces/IAuthUtilsOptions";
 import { Passport } from "./lib/Passport";
 import { Session } from "./lib/Session";
+import { ZitadelSessionPermissionsHandler } from "./permissionHandler/ZitadelSessionPermissionsHandler";
 
 /**
  * @author Nico W.
@@ -18,6 +19,7 @@ export class AuthUtils {
     this.obj = obj;
     this.session = new Session(obj);
     this.passport = new Passport(obj);
+    ZitadelSessionPermissionsHandler.createPermissionsHandler(this.obj);
   }
 
   static getAuthUtils() {
@@ -54,5 +56,5 @@ export class AuthUtils {
 //re-export for inde file usage
 export * from "./checkLoggedIn";
 export * from "./utils/authUtilsConvictConfig";
-export * from "./db/PermissionsEntity";
-export * from "./db/PermissionsHandler";
+export * from "./permissionHandler/ZitadelSessionPermissionsHandler";
+export * from "./permissionHandler/AbstractPermissionHandler";

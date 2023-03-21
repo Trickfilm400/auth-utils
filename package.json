@@ -43,7 +43,7 @@
         "express-session": "^1.17.3",
         "openid-client": "^5.4.0",
         "passport": "^0.6.0",
-        "typeorm": "0.3.12"
+        "typeorm": "^0.3.12"
     },
     "files": [
         "dist",
