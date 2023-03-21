@@ -1,13 +1,15 @@
 import { Mysql } from "@kopf02/express-utils";
 import { DataSource, DataSourceOptions } from "typeorm";
 import { NextFunction, Request, Response } from "express";
-import { PermissionsEntity } from "./PermissionsEntity";
+import { PermissionsEntity } from "../../../../AppData/Roaming/JetBrains/WebStorm2022.3/scratches/PermissionsEntity";
 import HTTPUnauthorizedError from "../utils/HTTPUnauthorizedError";
+import { AbstractPermissionHandler } from "./AbstractPermissionHandler";
 
-export class PermissionsHandler {
+export class PermissionsHandler extends AbstractPermissionHandler {
   private readonly _db: DataSource;
   private static permissionsHandler: PermissionsHandler;
   private constructor(db: DataSource | Partial<DataSourceOptions>) {
+    super();
     if (db instanceof DataSource) {
       //use existing connection
       this._db = db;
@@ -41,11 +43,11 @@ export class PermissionsHandler {
     };
   }
 
-  async addPerm(userID: string, perm: string) {
+  async addPermission(userID: string, perm: string) {
     await this.dbTable().save({ permissions: perm, unique_userId: userID });
   }
 
-  async revokePerm(userID: string, perm: string) {
+  async revokePermission(userID: string, perm: string) {
     await this.dbTable().delete({ permissions: perm, unique_userId: userID });
   }
   //alias to revokePerm
