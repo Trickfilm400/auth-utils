@@ -19,7 +19,10 @@ export class AuthUtils {
     this.obj = obj;
     this.session = new Session(obj);
     this.passport = new Passport(obj);
-    ZitadelSessionPermissionsHandler.createPermissionsHandler(this.obj);
+    if (this.obj.zitadelRoleMapping)
+      ZitadelSessionPermissionsHandler.createPermissionsHandler(
+        this.obj.zitadelRoleMapping
+      );
   }
 
   static getAuthUtils() {

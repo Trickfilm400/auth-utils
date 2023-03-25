@@ -10,5 +10,5 @@ export interface IAuthUtilsOptions {
     callbackURLs: string[];
     postLogoutRedirectURLs: string[];
   };
-  zitadelRoleMapping: string;
+  zitadelRoleMapping?: string;
 }

@@ -10,22 +10,27 @@ export interface ZitadelUserRequest extends Request {
 }
 
 export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler {
-  private readonly obj: IAuthUtilsOptions;
+  private readonly roleMappingConfig: string;
   private readonly roleMapping: Record<string, string>;
-  static createPermissionsHandler(obj: IAuthUtilsOptions) {
+  static createPermissionsHandler(
+    roleMapping: IAuthUtilsOptions["zitadelRoleMapping"]
+  ) {
     return super.registerPermissionsHandler(
-      new ZitadelSessionPermissionsHandler(obj)
+      new ZitadelSessionPermissionsHandler(roleMapping)
     );
   }
-  private constructor(obj: IAuthUtilsOptions) {
+  private constructor(roleMapping: IAuthUtilsOptions["zitadelRoleMapping"]) {
     super();
-    this.obj = obj;
+    if (!roleMapping) {
+      throw new Error("Role Mapping required");
+    }
+    this.roleMappingConfig = roleMapping;
     this.roleMapping = this.parseEnvConfig();
   }
 
   parseEnvConfig() {
     //synax: PERMISSION="PERM_STRING=ROLE1,PERM_OTHER=ROLE2"
-    const roles = this.obj.zitadelRoleMapping;
+    const roles = this.roleMappingConfig;
     const roleMapping: Record<string, string> = {};
     roles.split(",").forEach((role) => {
       const [permString, ssoRole] = role.split("=");
@@ -63,7 +68,7 @@ export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler 
       } else {
         //not authorized
         if (action === "redirect") res.redirect("/login");
-        else throw new HTTPUnauthorizedError(req);
+        else next(new HTTPUnauthorizedError(req));
       }
     };
   }
