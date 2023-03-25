@@ -3,6 +3,12 @@ import HTTPUnauthorizedError from "../utils/HTTPUnauthorizedError";
 import { AbstractPermissionHandler } from "./AbstractPermissionHandler";
 import { IAuthUtilsOptions } from "../interfaces/IAuthUtilsOptions";
 
+export interface ZitadelUserRequest extends Request {
+  user: {
+    [key: string]: any;
+  };
+}
+
 export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler {
   private readonly obj: IAuthUtilsOptions;
   private readonly roleMapping: Record<string, string>;
@@ -28,8 +34,8 @@ export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler 
     return roleMapping;
   }
 
-  getUserRoles(req: Request) {
-    // @ts-ignore
+  getUserRoles(req: ZitadelUserRequest) {
+    if (req.user && !req.user["urn:zitadel:iam:org:project:roles"]) return [];
     return Object.keys(req.user["urn:zitadel:iam:org:project:roles"]).map(
       (role) => role.toUpperCase()
     );
@@ -39,7 +45,11 @@ export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler 
     permissionString: string,
     action: "redirect" | "throwError" = "throwError"
   ) {
-    return async (req: Request, res: Response, next: NextFunction) => {
+    return async (
+      req: ZitadelUserRequest,
+      res: Response,
+      next: NextFunction
+    ) => {
       //todo make DB or lib check if user has permission
       //user roles:
       const userRoles = this.getUserRoles(req);
