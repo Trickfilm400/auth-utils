@@ -56,5 +56,5 @@ export class AuthUtils {
 //re-export for inde file usage
 export * from "./checkLoggedIn";
 export * from "./utils/authUtilsConvictConfig";
-export * from "./permissionHandler/ZitadelSessionPermissionsHandler";
+export { ZitadelSessionPermissionsHandler };
 export * from "./permissionHandler/AbstractPermissionHandler";

@@ -35,7 +35,7 @@ export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler 
   }
 
   getUserRoles(req: ZitadelUserRequest) {
-    if (req.user && !req.user["urn:zitadel:iam:org:project:roles"]) return [];
+    if (!req.user || !req.user["urn:zitadel:iam:org:project:roles"]) return [];
     return Object.keys(req.user["urn:zitadel:iam:org:project:roles"]).map(
       (role) => role.toUpperCase()
     );
