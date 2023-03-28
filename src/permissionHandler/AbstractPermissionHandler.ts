@@ -12,11 +12,7 @@ export abstract class AbstractPermissionHandler {
   //   permissions: string
   // ): unknown;
   //abstract registerUser(req: Request, _res: Response, next: NextFunction): void;
-  private static instance: AbstractPermissionHandler;
-
-  static getPermissionsHandler() {
-    return this.instance;
-  }
+  protected static instance: AbstractPermissionHandler;
 
   protected static registerPermissionsHandler(
     instance: AbstractPermissionHandler

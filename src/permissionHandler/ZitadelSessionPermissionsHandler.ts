@@ -19,6 +19,10 @@ export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler 
       new ZitadelSessionPermissionsHandler(roleMapping)
     );
   }
+
+  static getPermissionsHandler(): ZitadelSessionPermissionsHandler {
+    return <ZitadelSessionPermissionsHandler>this.instance;
+  }
   private constructor(roleMapping: IAuthUtilsOptions["zitadelRoleMapping"]) {
     super();
     if (!roleMapping) {
