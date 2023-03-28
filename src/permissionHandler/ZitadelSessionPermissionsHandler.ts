@@ -54,11 +54,8 @@ export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler 
     permissionString: string,
     action: "redirect" | "throwError" = "throwError"
   ) {
-    return async (
-      req: ZitadelUserRequest,
-      res: Response,
-      next: NextFunction
-    ) => {
+    return async (orgReq: Request, res: Response, next: NextFunction) => {
+      const req = orgReq as ZitadelUserRequest;
       //todo make DB or lib check if user has permission
       //user roles:
       const userRoles = this.getUserRoles(req);
