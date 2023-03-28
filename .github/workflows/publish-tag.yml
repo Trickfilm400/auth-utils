@@ -1,6 +1,7 @@
 name: Release-Full
 
 on:
+  workflow_dispatch:
   release:
     types:
       - published
