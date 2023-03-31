@@ -17,19 +17,19 @@ export const authUtilsConvictConfigSchema: Schema<authUtilsConvictConfig> = {
     issuer_url: {
       doc: "The issuer url of the SSO",
       format: String,
-      default: "",
+      default: null,
       env: "SSO_ISSUER_URL",
     },
     client_id: {
       doc: "The client id of the SSO",
       format: String,
-      default: "",
+      default: null,
       env: "SSO_CLIENT_ID",
     },
     client_secret: {
       doc: "The client secret of the SSO",
       format: String,
-      default: "",
+      default: null,
       env: "SSO_CLIENT_SECRET",
     },
     callback_urls: {
