@@ -11,6 +11,7 @@ export interface IAuthUtilsOptions {
     callbackURLs: string[];
     postLogoutRedirectURLs: string[];
   };
+  scopes?: string[];
   zitadelRoleMapping?: string;
   postLoginFn?: (user?: Request["user"]) => any;
 }

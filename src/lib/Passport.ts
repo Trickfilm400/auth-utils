@@ -71,9 +71,12 @@ export class Passport {
 
   registerExpressRoutes() {
     //login
-    this.options.expressApp
-      .getServer()
-      .get("/login", passport.authenticate("oidc"));
+    this.options.expressApp.getServer().get(
+      "/login",
+      passport.authenticate("oidc", {
+        scope: this.options.scopes ? this.options.scopes : "openid",
+      })
+    );
     //login/callback
     this.options.expressApp.getServer().use(
       "/login/callback",
