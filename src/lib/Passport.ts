@@ -2,6 +2,7 @@ import { BaseClient, Issuer, Strategy } from "openid-client";
 import * as passport from "passport";
 import { IAuthUtilsOptions } from "../interfaces/IAuthUtilsOptions";
 import { NextFunction, Request, Response } from "express";
+import { AuthUtils } from "../index";
 
 /**
  * @author Nico W.
@@ -109,6 +110,7 @@ export class Passport {
         req.login(req.user!, (err: any) => {
           console.log(err);
         });
+        AuthUtils.getAuthUtils().postLoginCallback(req.user);
         res.redirect(
           req.query.redirect_uri ? `/${<string>req.query.redirect_uri}` : "/"
         );

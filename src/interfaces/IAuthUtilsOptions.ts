@@ -1,4 +1,5 @@
 import { App } from "@kopf02/express-utils";
+import { Request } from "express";
 
 export interface IAuthUtilsOptions {
   strategy?: "saml" | "oauth" | "oidc";
@@ -11,4 +12,5 @@ export interface IAuthUtilsOptions {
     postLogoutRedirectURLs: string[];
   };
   zitadelRoleMapping?: string;
+  postLoginFn?: (user?: Request["user"]) => any;
 }

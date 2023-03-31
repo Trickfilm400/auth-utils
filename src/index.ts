@@ -2,6 +2,7 @@ import { IAuthUtilsOptions } from "./interfaces/IAuthUtilsOptions";
 import { Passport } from "./lib/Passport";
 import { Session } from "./lib/Session";
 import { ZitadelSessionPermissionsHandler } from "./permissionHandler/ZitadelSessionPermissionsHandler";
+import { Request } from "express";
 
 /**
  * @author Nico W.
@@ -55,9 +56,15 @@ export class AuthUtils {
       .use(this.passport.getPassportSessionMiddleware());
     this.passport.registerExpressRoutes();
   }
+
+  postLoginCallback(user?: Request["user"]): any {
+    //implement own logic and this function will be called after a login
+    if (typeof this.obj.postLoginFn === "function") this.obj.postLoginFn(user);
+  }
 }
 //re-export for inde file usage
 export * from "./checkLoggedIn";
 export * from "./utils/authUtilsConvictConfig";
 export { ZitadelSessionPermissionsHandler };
 export * from "./permissionHandler/AbstractPermissionHandler";
+export * from "./interfaces/IUserDBTemplate";
