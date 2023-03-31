@@ -23,14 +23,15 @@ Concept
 =======================
 
 - [x] expose middleware for checked if logged in
-- [ ] check if user has session / key which is authenticated (logged in via SSO)
+- [x] check if user has session / key which is authenticated (logged in via SSO) => `checkLoggedIn()` Middleware
 - [ ] expose function to check if user has permission (probably use library and expose check method)
   - [ ] e. g. asterisk-perm: `check("user:read"): boolean`
 - [x] expose SSO paths (/login, /logout, /callback)
   - [ ] to handle oidc/oauth2/saml authentications
   - [ ] select which you cant to have implemented
 - [x] parameters for library on initialisation in project
-  - [ ] _express-app_, **existing DB**? _variables for SSO_ (or/and DB)
+  - [x] _express-app_, **existing DB**? _variables for SSO_ (or/and DB)
+  - [ ] DB missing currently
 - [ ] implement
   - [ ] custom permission management by SSO users
     - [ ] create custom permission for SSO user

@@ -22,6 +22,10 @@ export class Passport {
       else return this.options.scopes;
     } else return "openid";
   }
+
+  private get strategy() {
+    return this.options.strategy || "oidc";
+  }
   constructor(options: IAuthUtilsOptions) {
     this.options = options;
   }
@@ -63,7 +67,7 @@ export class Passport {
     this.client = await this.getOIDC_Client();
     console.log("registerPassportStrategy", this.client);
     passport.use(
-      "oidc",
+      this.strategy,
       new Strategy(
         { client: this.client },
         (
@@ -82,7 +86,7 @@ export class Passport {
     //login
     this.options.expressApp.getServer().get(
       "/login",
-      passport.authenticate("oidc", {
+      passport.authenticate(this.strategy, {
         scope: this.getScopes(),
       })
     );
@@ -91,7 +95,7 @@ export class Passport {
       "/login/callback",
 
       passport.authenticate(
-        "oidc",
+        this.strategy,
         {
           failureRedirect: "/error",
           authInfo: true,
