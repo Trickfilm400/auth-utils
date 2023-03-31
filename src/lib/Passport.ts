@@ -13,6 +13,15 @@ import { AuthUtils } from "../index";
 export class Passport {
   private readonly options: IAuthUtilsOptions;
   private client: BaseClient;
+
+  // parse scopes from options (maybe from array) to final string with spaces separator
+  private getScopes() {
+    if (this.options.scopes) {
+      if (Array.isArray(this.options.scopes))
+        return this.options.scopes.join(" ");
+      else return this.options.scopes;
+    } else return "openid";
+  }
   constructor(options: IAuthUtilsOptions) {
     this.options = options;
   }
@@ -74,16 +83,12 @@ export class Passport {
     this.options.expressApp.getServer().get(
       "/login",
       passport.authenticate("oidc", {
-        scope: this.options.scopes ? this.options.scopes : "openid",
+        scope: this.getScopes(),
       })
     );
     //login/callback
     this.options.expressApp.getServer().use(
       "/login/callback",
-      // (_req: Request, _res: Response, _next: NextFunction) => {
-      //(req: any) => {
-      //console.log(_req);
-      //},
 
       passport.authenticate(
         "oidc",
