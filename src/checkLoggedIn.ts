@@ -35,9 +35,14 @@ class CheckLoggedIn {
   getLoggedInStatusBoolean(req: Request) {
     return this.getAuthStatus(req);
   }
+
+  /**
+   * Null if authenticated, else throws HTTPUnauthorizedError
+   * @param req
+   */
   getLoggedInStatusError(req: Request) {
-    if (this.getAuthStatus(req)) throw new HTTPUnauthorizedError(req);
-    else return null;
+    if (this.getAuthStatus(req)) return null;
+    else throw new HTTPUnauthorizedError(req);
   }
 }
 
