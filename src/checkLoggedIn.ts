@@ -42,7 +42,7 @@ class CheckLoggedIn {
    */
   getLoggedInStatusError(req: Request) {
     if (this.getAuthStatus(req)) return null;
-    else throw new HTTPUnauthorizedError(req);
+    else return new HTTPUnauthorizedError(req);
   }
 }
 
