@@ -1,9 +1,19 @@
 # 
 
-2022
+2022-2023
 Created with ♥ by [typescript-project-scaffolding](https://github.com/Trickfilm400/typescript-project-scaffolding)
 
+## ENV
 
+| ENV                           | Description                              | Default |
+|-------------------------------|------------------------------------------|---------|
+| SSO_ISSUER_URL                | The issuer url of the SSO                |         |
+| SSO_CLIENT_ID                 | The client id of the SSO                 |         |
+| SSO_CLIENT_SECRET             | The client secret of the SSO             |         |
+| SSO_CALLBACK_URLS             | The callback urls of the SSO             |         |
+| SSO_POST_LOGOUT_REDIRECT_URLS | The post logout redirect urls of the SSO |         |
+| SSO_STRATEGY                  | The strategy to use for authentication   | `oidc`  |
+| SSO_ZITADEL_ROLE_MAPPING      | Map the roles to permissions             | ""      |
 
 
 
