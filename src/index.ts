@@ -3,6 +3,7 @@ import { Passport } from "./lib/Passport";
 import { Session } from "./lib/Session";
 import { ZitadelSessionPermissionsHandler } from "./permissionHandler/ZitadelSessionPermissionsHandler";
 import { Request } from "express";
+import HTTPUnauthorizedError from "./utils/HTTPUnauthorizedError";
 
 /**
  * @author Nico W.
@@ -63,8 +64,11 @@ export class AuthUtils {
   }
 }
 //re-export for inde file usage
+const AuthExceptions = {
+  UnauthorizedError: HTTPUnauthorizedError,
+};
 export * from "./checkLoggedIn";
 export * from "./utils/authUtilsConvictConfig";
-export { ZitadelSessionPermissionsHandler };
+export { ZitadelSessionPermissionsHandler, AuthExceptions };
 export * from "./permissionHandler/AbstractPermissionHandler";
 export * from "./interfaces/IUserDBTemplate";
