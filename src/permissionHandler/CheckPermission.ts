@@ -51,4 +51,4 @@ class CheckPermission {
   }
 }
 
-export default CheckPermission;
+export { CheckPermission };
