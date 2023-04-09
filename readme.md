@@ -34,6 +34,7 @@ Concept
 
 - [x] expose middleware for checked if logged in
 - [x] check if user has session / key which is authenticated (logged in via SSO) => `checkLoggedIn()` Middleware
+- [ ] **Typescript decorator**
 - [ ] expose function to check if user has permission (probably use library and expose check method)
   - [ ] e. g. asterisk-perm: `check("user:read"): boolean`
 - [x] expose SSO paths (/login, /logout, /callback)

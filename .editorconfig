@@ -1,0 +1,3 @@
+# line breaks to lf
+[*]
+end_of_line = lf
