@@ -5,7 +5,7 @@ import { IAuthUtilsOptions } from "../interfaces/IAuthUtilsOptions";
 
 export interface ZitadelUserRequest extends Request {
   user: {
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 

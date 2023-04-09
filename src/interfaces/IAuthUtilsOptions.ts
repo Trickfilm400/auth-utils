@@ -13,5 +13,5 @@ export interface IAuthUtilsOptions {
   };
   scopes?: string | string[];
   zitadelRoleMapping?: string;
-  postLoginFn?: (user?: Request["user"]) => any;
+  postLoginFn?: (user?: Request["user"]) => void;
 }

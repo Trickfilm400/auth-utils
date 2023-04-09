@@ -58,7 +58,7 @@ export class AuthUtils {
     this.passport.registerExpressRoutes();
   }
 
-  postLoginCallback(user?: Request["user"]): any {
+  postLoginCallback(user?: Request["user"]): void {
     //implement own logic and this function will be called after a login
     if (typeof this.obj.postLoginFn === "function") this.obj.postLoginFn(user);
   }

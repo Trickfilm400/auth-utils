@@ -36,7 +36,7 @@ export class Passport {
       next(null, user);
     });
 
-    passport.deserializeUser((obj: any, next) => {
+    passport.deserializeUser((obj: never, next) => {
       console.log(obj);
       next(null, obj);
     });
@@ -46,21 +46,17 @@ export class Passport {
     return passport.session();
   }
   async getOIDC_Client() {
-    try {
-      const issuer = await Issuer.discover(this.options.credentials.issuerURL);
-      console.log(issuer);
-      const client = new issuer.Client({
-        client_id: this.options.credentials.clientID,
-        client_secret: this.options.credentials.clientSecret,
-        redirect_uris: this.options.credentials.callbackURLs,
-        post_logout_redirect_uris:
-          this.options.credentials.postLogoutRedirectURLs,
-        token_endpoint_auth_method: "client_secret_post",
-      });
-      return client;
-    } catch (e) {
-      throw e;
-    }
+    const issuer = await Issuer.discover(this.options.credentials.issuerURL);
+    console.log(issuer);
+    const client = new issuer.Client({
+      client_id: this.options.credentials.clientID,
+      client_secret: this.options.credentials.clientSecret,
+      redirect_uris: this.options.credentials.callbackURLs,
+      post_logout_redirect_uris:
+        this.options.credentials.postLogoutRedirectURLs,
+      token_endpoint_auth_method: "client_secret_post",
+    });
+    return client;
   }
 
   async registerPassportStrategy() {
@@ -71,9 +67,9 @@ export class Passport {
       new Strategy(
         { client: this.client },
         (
-          tokenSet: { claims: () => any },
-          _userinfo: any,
-          done: (arg0: null, arg1: any) => any
+          tokenSet: { claims: () => unknown },
+          _userinfo: unknown,
+          done: (arg0: null, arg1: unknown) => unknown
         ) => {
           console.log("tokenSet:", tokenSet, "_userInfo", _userinfo);
           return done(null, tokenSet.claims());
@@ -119,7 +115,8 @@ export class Passport {
       // },
       (req: Request, res: Response) => {
         console.log("req.user", req.user);
-        req.login(req.user!, (err: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        req.login(req.user!, (err: unknown) => {
           console.log(err);
         });
         AuthUtils.getAuthUtils().postLoginCallback(req.user);

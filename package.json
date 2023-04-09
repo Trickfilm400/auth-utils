@@ -1,6 +1,6 @@
 {
     "name": "@trickfilm400/auth-utils",
-    "version": "0.0.3-beta",
+    "version": "0.0.4-beta",
     "description": "",
     "main": "./dist/index.js",
     "scripts": {
