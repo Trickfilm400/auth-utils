@@ -73,4 +73,29 @@ export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler 
       }
     };
   }
+
+  getPermissions(orgReq: Request): string[] {
+    const req = orgReq as ZitadelUserRequest;
+    //todo make DB or lib check if user has permission
+    //user roles:
+    const userRoles = this.getUserRoles(req);
+    const res: string[] = [];
+    Object.keys(this.roleMapping).forEach((permString) => {
+      const role = this.roleMapping[permString];
+      if (userRoles.includes(role)) res.push(role);
+    });
+    return res;
+  }
+
+  hasPermissions(orgReq: Request, permissionString: string): boolean {
+    const req = orgReq as ZitadelUserRequest;
+    //todo make DB or lib check if user has permission
+    //user roles:
+    const userRoles = this.getUserRoles(req);
+    //get required role by permission string
+    const requiredRole = this.roleMapping[permissionString.toLowerCase()];
+    //check if user has perm
+    const permRes = userRoles.includes(requiredRole);
+    return permRes;
+  }
 }

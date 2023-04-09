@@ -1,4 +1,4 @@
-//import { NextFunction, Request, Response } from "express";
+import { Request } from "express";
 
 export abstract class AbstractPermissionHandler {
   // abstract addPermission(
@@ -20,4 +20,11 @@ export abstract class AbstractPermissionHandler {
     this.instance = instance;
     return this.instance;
   }
+
+  protected static getPermissionsHandler(): AbstractPermissionHandler {
+    return this.instance;
+  }
+
+  abstract getPermissions(req: Request): string[];
+  abstract hasPermissions(req: Request, permissionString: string): boolean;
 }

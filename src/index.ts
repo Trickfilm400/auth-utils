@@ -72,3 +72,4 @@ export * from "./utils/authUtilsConvictConfig";
 export { ZitadelSessionPermissionsHandler, AuthExceptions };
 export * from "./permissionHandler/AbstractPermissionHandler";
 export * from "./interfaces/IUserDBTemplate";
+export * from "./permissionHandler/CheckPermission";
