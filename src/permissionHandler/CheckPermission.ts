@@ -4,9 +4,9 @@ import { AbstractPermissionHandler, AuthExceptions } from "../index";
 
 class CheckPermission {
   //
-  protected static instance: CheckPermission;
+  static instance: CheckPermission;
   private readonly permissionHandler: AbstractPermissionHandler;
-  protected static createCheckPermission(obj: {
+  static createCheckPermission(obj: {
     permissionHandler: AbstractPermissionHandler;
   }) {
     this.instance = new CheckPermission(obj.permissionHandler);
