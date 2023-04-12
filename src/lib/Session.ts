@@ -4,14 +4,17 @@ import * as cookieParser from "cookie-parser";
 export class Session {
   private readonly obj: IAuthUtilsOptions;
   constructor(obj: IAuthUtilsOptions) {
+    obj.cookieSecret ||= "keyboard cat random secret test string wow";
     this.obj = obj;
   }
 
   registerSessionMiddleware() {
-    this.obj.expressApp.getServer().use(cookieParser("keyboard cat"));
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.obj.expressApp.getServer().use(cookieParser(this.obj.cookieSecret!));
     this.obj.expressApp.getServer().use(
       expressSession({
-        secret: "keyboard cat",
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        secret: this.obj.cookieSecret!,
         resave: false,
         saveUninitialized: false,
       })
