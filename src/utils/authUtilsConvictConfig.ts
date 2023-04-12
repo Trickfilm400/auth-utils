@@ -56,5 +56,11 @@ export const authUtilsConvictConfigSchema: Schema<authUtilsConvictConfig> = {
       default: "",
       env: "SSO_ZITADEL_ROLE_MAPPING",
     },
+    cookieSecret: {
+      doc: "Secret for the session cookie",
+      format: String,
+      default: "",
+      env: "SSO_SESSION_COOKIE_SECRET",
+    },
   },
 };
