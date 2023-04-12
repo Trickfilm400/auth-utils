@@ -9,6 +9,7 @@ export interface authUtilsConvictConfig {
     post_logout_redirect_urls: string[];
     strategy: "oidc" | "saml";
     zitadelRoleMapping: string;
+    cookieSecret: string;
   };
 }
 
