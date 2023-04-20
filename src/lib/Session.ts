@@ -5,6 +5,7 @@ export class Session {
   private readonly obj: IAuthUtilsOptions;
   constructor(obj: IAuthUtilsOptions) {
     obj.cookieSecret ||= "keyboard cat random secret test string wow";
+    obj.cookieUninitializedSave ||= false;
     this.obj = obj;
   }
 
@@ -16,7 +17,7 @@ export class Session {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         secret: this.obj.cookieSecret!,
         resave: false,
-        saveUninitialized: false,
+        saveUninitialized: this.obj.cookieUninitializedSave,
       })
     );
   }

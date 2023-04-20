@@ -10,6 +10,7 @@ export interface authUtilsConvictConfig {
     strategy: "oidc" | "saml";
     zitadelRoleMapping: string;
     cookieSecret: string;
+    cookieUninitializedSave: boolean;
   };
 }
 
@@ -62,6 +63,12 @@ export const authUtilsConvictConfigSchema: Schema<authUtilsConvictConfig> = {
       format: String,
       default: "",
       env: "SSO_SESSION_COOKIE_SECRET",
+    },
+    cookieUninitializedSave: {
+      doc: "Save empty sessions",
+      format: Boolean,
+      default: false,
+      env: "SSO_SESSION_COOKIE_SAVE_UNINITIALIZED",
     },
   },
 };

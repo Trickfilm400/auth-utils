@@ -14,5 +14,6 @@ export interface IAuthUtilsOptions {
   scopes?: string | string[];
   zitadelRoleMapping?: string;
   cookieSecret?: string;
+  cookieUninitializedSave?: boolean;
   postLoginFn?: (user?: Request["user"]) => void;
 }
