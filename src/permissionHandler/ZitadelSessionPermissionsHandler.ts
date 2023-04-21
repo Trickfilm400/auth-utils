@@ -69,7 +69,13 @@ export class ZitadelSessionPermissionsHandler extends AbstractPermissionHandler 
       } else {
         //not authorized
         if (action === "redirect") res.redirect("/login");
-        else next(new HTTPUnauthorizedError(req));
+        else
+          next(
+            new HTTPUnauthorizedError({
+              req,
+              requiredPermission: permissionString,
+            })
+          );
       }
     };
   }

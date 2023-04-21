@@ -29,7 +29,7 @@ class CheckLoggedIn {
    */
   throwError(req: Request, _res: Response, next: NextFunction) {
     if (req.isAuthenticated()) return next();
-    else throw new HTTPUnauthorizedError(req);
+    else throw new HTTPUnauthorizedError({ req });
   }
 
   getLoggedInStatusBoolean(req: Request) {
@@ -42,7 +42,7 @@ class CheckLoggedIn {
    */
   getLoggedInStatusError(req: Request) {
     if (this.getAuthStatus(req)) return null;
-    else return new HTTPUnauthorizedError(req);
+    else return new HTTPUnauthorizedError({ req });
   }
 }
 

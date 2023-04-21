@@ -30,7 +30,8 @@ class CheckPermission {
     ) {
       //check permission
       const userLoggedIn = checkLoggedIn.getLoggedInStatusBoolean(req);
-      if (!userLoggedIn) return next(new AuthExceptions.UnauthorizedError(req));
+      if (!userLoggedIn)
+        return next(new AuthExceptions.UnauthorizedError({ req }));
       //call org method
       return originalMethod.call(this, req, res, next);
     }
