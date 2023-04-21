@@ -1,4 +1,5 @@
 import { Schema } from "convict";
+import { CookieOptions } from "express-session";
 
 export interface authUtilsConvictConfig {
   sso: {
@@ -11,6 +12,7 @@ export interface authUtilsConvictConfig {
     zitadelRoleMapping: string;
     cookieSecret: string;
     cookieUninitializedSave: boolean;
+    cookieOptions: Pick<CookieOptions, "sameSite">;
   };
 }
 
@@ -69,6 +71,14 @@ export const authUtilsConvictConfigSchema: Schema<authUtilsConvictConfig> = {
       format: Boolean,
       default: false,
       env: "SSO_SESSION_COOKIE_SAVE_UNINITIALIZED",
+    },
+    cookieOptions: {
+      sameSite: {
+        doc: "Set the sameSite option for the session cookie",
+        format: ["lax", "strict", "none"],
+        default: "lax",
+        env: "SSO_SESSION_COOKIE_SAME_SITE",
+      },
     },
   },
 };

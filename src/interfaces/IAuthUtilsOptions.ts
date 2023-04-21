@@ -1,5 +1,6 @@
-import { App } from "@kopf02/express-utils";
+import { App, IRedisConfig } from "@kopf02/express-utils";
 import { Request } from "express";
+import { CookieOptions } from "express-session";
 
 export interface IAuthUtilsOptions {
   strategy?: "saml" | "oauth" | "oidc";
@@ -13,7 +14,13 @@ export interface IAuthUtilsOptions {
   };
   scopes?: string | string[];
   zitadelRoleMapping?: string;
-  cookieSecret?: string;
-  cookieUninitializedSave?: boolean;
+  cookie?: {
+    cookieOptions?: CookieOptions;
+    cookieSecret?: string;
+    cookieUninitializedSave?: boolean;
+    cookieRedisStore?: IRedisConfig;
+    cookieRedisEnabled?: boolean;
+    redisStore?: IRedisConfig;
+  };
   postLoginFn?: (user?: Request["user"]) => void;
 }

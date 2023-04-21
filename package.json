@@ -1,6 +1,6 @@
 {
     "name": "@trickfilm400/auth-utils",
-    "version": "0.0.5-beta",
+    "version": "0.0.6-beta",
     "description": "",
     "main": "./dist/index.js",
     "scripts": {
@@ -49,5 +49,9 @@
         "dist",
         "typings"
     ],
-    "typings": "typings/index.d.ts"
+    "typings": "typings/index.d.ts",
+    "peerDependencies": {
+        "connect-redis": "^7.0.1",
+        "redis": "^4.6.5"
+    }
 }
