@@ -25,6 +25,7 @@ export class Session {
         resave: false,
         cookie: {
           sameSite: this.obj.cookie?.cookieOptions?.sameSite || "lax",
+          secure: this.obj.cookie?.cookieOptions?.secure,
         },
         store: this.createRedis() || new MemoryStore(),
         saveUninitialized: this.obj.cookie!.cookieUninitializedSave!,
