@@ -1,7 +1,7 @@
 import { JwksClient } from "jwks-rsa";
 import * as jwt from "jsonwebtoken";
 import * as JwksRsa from "jwks-rsa";
-import { JwtHeader, JwtPayload } from "jsonwebtoken";
+import { JwtHeader, JwtPayload, SigningKeyCallback } from "jsonwebtoken";
 
 /**
  * graphql auth:
@@ -28,9 +28,18 @@ export class AuthUtils {
   /**
    * get correct jwk signing key for verification
    * @param header - JWT Header
+   * @param callback needed because promise is not supported
    */
-  async getKey(header: JwtHeader) {
-    return this.client.getSigningKey(header.kid);
+  async getKey(header: JwtHeader, callback: SigningKeyCallback) {
+    //console.log("header:", header);
+    try {
+      callback(
+        null,
+        (await this.client.getSigningKey(header.kid)).getPublicKey()
+      );
+    } catch (e) {
+      callback(e);
+    }
   }
 
   /**
@@ -41,15 +50,17 @@ export class AuthUtils {
     accessToken: string
   ): Promise<JwtPayload & PAYLOAD> {
     return new Promise<JwtPayload & PAYLOAD>((resolve, reject) => {
+      //console.log("debug, jwt.verify", accessToken);
       jwt.verify(
         accessToken,
         this.getKey.bind(this),
         { algorithms: ["RS256"] },
         function (_err, decoded) {
+          //console.log("decoded", decoded, "err", _err);
           if (_err) return reject(_err);
-          console.log("decoded", decoded);
-          if (!decoded || typeof decoded === "string") return;
-          resolve(decoded as never);
+          if (!decoded || typeof decoded === "string")
+            return resolve(decoded as any);
+          return resolve(decoded as never);
         }
       );
     });
@@ -63,10 +74,10 @@ export class AuthUtils {
     bearerToken: string
   ) {
     const jwt = bearerToken.split(" ")[1];
-    console.log(jwt);
+    //console.log("jwt", jwt);
     if (jwt) {
       const user = await this.validateAccessToken<PAYLOAD>(jwt);
-      console.log("user", user);
+      //console.log("user", user);
       if (!user) return null;
       return user;
     }
