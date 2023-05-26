@@ -1,10 +1,10 @@
-name: ESLint
+name: JWKs Pipeline
 
 on:
   push:
-    branches: [ master ]
+    branches: [ jwks ]
   pull_request:
-    branches: [ master ]
+    branches: [ jwks ]
 
 jobs:
   eslint:
