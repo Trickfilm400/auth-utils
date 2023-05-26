@@ -1,6 +1,6 @@
 {
-    "name": "auth-utils",
-    "version": "0.0.0-dev-01",
+    "name": "@trickfilm400/auth-utils",
+    "version": "0.0.1-jwks",
     "description": "auth-utils",
     "main": "./dist/index.js",
     "scripts": {
