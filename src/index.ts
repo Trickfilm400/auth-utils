@@ -35,7 +35,7 @@ export class AuthUtils {
 
   /**
    * verify JWT Token (& decoding it)
-   * @param accessToken
+   * @param accessToken - RAW JWT, no http header supported
    */
   validateAccessToken<PAYLOAD extends Record<string, string>>(
     accessToken: string
