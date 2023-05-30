@@ -2,6 +2,7 @@ import { JwksClient } from "jwks-rsa";
 import * as jwt from "jsonwebtoken";
 import * as JwksRsa from "jwks-rsa";
 import { JwtHeader, JwtPayload, SigningKeyCallback } from "jsonwebtoken";
+import { Schema } from "convict";
 
 /**
  * graphql auth:
@@ -84,3 +85,23 @@ export class AuthUtils {
     return null;
   }
 }
+
+/**
+ * this can be used to extend your existing convict config
+ */
+export const CONVICT_CONFIG_TEMPLATE: Schema<object> = {
+  auth: {
+    jwks_url: {
+      doc: "URL to the JWKS endpoint",
+      format: String,
+      default: null,
+      env: "AUTH_JWKS_URL",
+    },
+    enabled: {
+      doc: "Whether authentication should be checked",
+      format: Boolean,
+      default: true,
+      env: "AUTH_ENABLED",
+    },
+  },
+};

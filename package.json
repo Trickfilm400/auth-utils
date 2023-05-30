@@ -43,5 +43,5 @@
         "dist",
         "typings"
     ],
-    "typing": "typings/index.d.ts"
+    "typings": "typings/index.d.ts"
 }
