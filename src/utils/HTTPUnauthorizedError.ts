@@ -8,8 +8,7 @@ export interface HttpExceptionUnauthorizedInterface {
 }
 
 class Unauthorized extends HttpExceptions.HttpException {
-  private readonly obj: HttpExceptionUnauthorizedInterface;
-  constructor(obj: HttpExceptionUnauthorizedInterface) {
+  constructor(private obj: HttpExceptionUnauthorizedInterface) {
     super(401, obj.msg?.title || "Unauthorized");
   }
   getBody(): HttpError<{ path: string; requiredPermission?: any }> {
