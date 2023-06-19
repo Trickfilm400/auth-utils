@@ -1,4 +1,6 @@
-# 
+# auth-utils (session-based)
+
+## This branch is not maintained
 
 2022-2023
 Created with ♥ by [typescript-project-scaffolding](https://github.com/Trickfilm400/typescript-project-scaffolding)
