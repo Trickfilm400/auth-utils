@@ -25,7 +25,6 @@ class Unauthorized extends HttpExceptions.HttpException {
   }
 }
 
-const EXCEPTIONS = {
+export const EXCEPTIONS = {
   Unauthorized,
 };
-export default EXCEPTIONS;

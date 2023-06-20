@@ -12,8 +12,6 @@ const UNAUTHORIZED = new GraphQLError(
   }
 );
 
-const EXCEPTIONS = {
+export const EXCEPTIONS = {
   UNAUTHORIZED,
 };
-
-export default EXCEPTIONS;
