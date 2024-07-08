@@ -85,6 +85,8 @@ export class AuthUtils {
     bearerToken: string,
     throwError = true
   ) {
+    //runtime check for undefined values
+    if (!bearerToken) return null;
     const jwt = bearerToken.split(" ")[1];
     if (!jwt) return null;
     //console.log("jwt", jwt);
