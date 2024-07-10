@@ -1,6 +1,0 @@
-{
-	"trailingComma": "es5", //(default config value)
-	"tabWidth": 2, //(default config value)
-	"semi": true, //(default config value)
-	"singleQuote": true
-}
