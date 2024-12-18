@@ -23,21 +23,16 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@apollo/server": "^4.11.0",
-        "@eslint/js": "^9.13.0",
+        "@apollo/server": "^4.11.2",
         "@kopf02/express-utils": "^2.0.0",
+        "@trickfilm400/eslint-shared-config": "^0.0.1",
         "@types/convict": "^6.1.6",
         "@types/cors": "^2.8.17",
-        "@types/eslint__js": "^8.42.3",
         "@types/jsonwebtoken": "^9.0.7",
-        "@types/node": "^20.16.13",
-        "eslint": "^9.13.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.2.1",
+        "@types/node": "^20.17.10",
         "ts-node": "^10.9.2",
         "ts-node-dev": "^2.0.0",
-        "typescript": "^5.6.3",
-        "typescript-eslint": "^8.10.0"
+        "typescript": "^5.7.2"
     },
     "dependencies": {
         "convict": "^6.2.4",
