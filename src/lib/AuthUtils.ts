@@ -1,7 +1,12 @@
 import { JwksClient } from "jwks-rsa";
 import * as jwt from "jsonwebtoken";
 import * as JwksRsa from "jwks-rsa";
-import { Algorithm, JwtHeader, JwtPayload, SigningKeyCallback } from 'jsonwebtoken';
+import {
+  Algorithm,
+  JwtHeader,
+  JwtPayload,
+  SigningKeyCallback,
+} from "jsonwebtoken";
 
 /**
  * graphql auth:
@@ -52,7 +57,7 @@ export class AuthUtils {
    * @internal
    */
   validateAccessToken<PAYLOAD extends Record<string, string>>(
-    accessToken: string
+    accessToken: string,
   ): Promise<JwtPayload & PAYLOAD> {
     return new Promise<JwtPayload & PAYLOAD>((resolve, reject) => {
       //get algorithm
@@ -69,9 +74,9 @@ export class AuthUtils {
           //console.log("decoded", decoded, "err", _err);
           if (_err) return reject(_err);
           if (!decoded || typeof decoded === "string")
-            return resolve(decoded as any);
+            return resolve(decoded as never);
           return resolve(decoded as never);
-        }
+        },
       );
     });
   }
@@ -88,7 +93,7 @@ export class AuthUtils {
    */
   async getTokenPayload<PAYLOAD extends Record<string, string>>(
     bearerToken: string,
-    throwError = true
+    throwError = true,
   ) {
     //runtime check for undefined values
     if (!bearerToken) return null;

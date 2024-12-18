@@ -9,7 +9,7 @@ const UNAUTHORIZED = new GraphQLError(
         status: 401,
       },
     },
-  }
+  },
 );
 
 export const EXCEPTIONS = {
