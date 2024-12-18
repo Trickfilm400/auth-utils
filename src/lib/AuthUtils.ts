@@ -1,7 +1,7 @@
 import { JwksClient } from "jwks-rsa";
 import * as jwt from "jsonwebtoken";
 import * as JwksRsa from "jwks-rsa";
-import { JwtHeader, JwtPayload, SigningKeyCallback } from "jsonwebtoken";
+import { Algorithm, JwtHeader, JwtPayload, SigningKeyCallback } from 'jsonwebtoken';
 
 /**
  * graphql auth:
@@ -55,11 +55,16 @@ export class AuthUtils {
     accessToken: string
   ): Promise<JwtPayload & PAYLOAD> {
     return new Promise<JwtPayload & PAYLOAD>((resolve, reject) => {
-      //console.log("debug, jwt.verify", accessToken);
+      //get algorithm
+      const [headerAsBase64] = accessToken.split(".");
+      const headerJSON = Buffer.from(headerAsBase64, "base64").toString(
+        "utf-8",
+      );
+      const { alg } = JSON.parse(headerJSON) as { alg: Algorithm; typ: string };
       jwt.verify(
         accessToken,
         this.getKey.bind(this),
-        { algorithms: ["RS256"] },
+        { algorithms: [alg] },
         function (_err, decoded) {
           //console.log("decoded", decoded, "err", _err);
           if (_err) return reject(_err);
@@ -89,6 +94,8 @@ export class AuthUtils {
     if (!bearerToken) return null;
     const jwt = bearerToken.split(" ")[1];
     if (!jwt) return null;
+    //check for correct jwt string format
+    if (!/(?:\w+)\.{1}(?:\w+)\.{1}(?:\w+)/.test(jwt)) return null;
     //console.log("jwt", jwt);
     try {
       const payload = await this.validateAccessToken<PAYLOAD>(jwt);
